@@ -1,8 +1,7 @@
 function getArray(arr) {
     let count = arr.length;
-    let firstElement = arr.splice(0, 1);
+    let firstElement = arr.splice(0,1);
     arr.splice(count - 1, 0, firstElement);
-
     return arr;
 }
 
@@ -14,7 +13,7 @@ function main() {
     for (j in itearte) {
         finalArray = getArray(arr);
     }
-    console.log(finalArray);
+    console.log(finalArray.flat());
 }
 
 main();
