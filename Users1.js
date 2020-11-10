@@ -13,7 +13,7 @@ async function getPosts(userId) {
 function getObject(users, posts) {
     let resultantObject = [];
     for (let user of users) {
-        posts[user.id-1].forEach(post => {
+        posts[user.id - 1].forEach(post => {
             resultantObject.push({
                 "userId": user.id,
                 "postId": post.id,
@@ -33,14 +33,19 @@ function getObject(users, posts) {
     console.log(resultantObject);
 }
 async function main() {
-    let usersId=[];
-    let users = await getUsers();
-    users.forEach((user)=>{
-    usersId.push(user.id);
-    });
-    async.map(usersId, getPosts, (err, result) => {
-        getObject(users, result);
-    });
+    let usersId = [];
+    try {
+        let users = await getUsers();
+        users.forEach((user) => {
+            usersId.push(user.id);
+        });
+        async.map(usersId, getPosts, (err, result) => {
+            getObject(users, result);
+        });
+    } catch {
+        console.log('Data not received');
+    }
+
 
 }
 main();
